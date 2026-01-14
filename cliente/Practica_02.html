@@ -3,32 +3,46 @@
     <head>  
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Práctica 01 : Eventos</title>   
-     <link rel="stylesheet" href="estilos.css">
-
+     <title>Práctica 02 : Formulario Dinámico</title>   
+     <link rel="stylesheet" href="Estilos.css">
     </head>
     <body>
-        <h1>Práctica 01 : Eventos</h1>
-        <p class="texto-chico">Input + submit > estado > render  </p>
+        <h1>Práctica 02 : Formulario de Alumnos</h1>
+        <p class="texto-chico">Formulario para registrar alumnos con validación y lista ordenada</p>
             <section class="panel">
                 <form id="formulario" novalidate>
-                    <label for="textoPregunta">Pregunta:</label>
-                    <textarea id="textoPregunta" rows="3" placeholder="Minimo 10 caracteres"></textarea>
-                    <label for="textoRespuesta">Respuesta correcta:</label>
-                    <input type="text" id="textoRespuesta" placeholder="Escribe la respuesta correcta" required>
-                    <div id="textoError" class="error" role="alert"></div>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" placeholder="Ingresa el nombre del alumno" required>
+                    
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" placeholder="Ingresa el apellido del alumno" required>
+                    
+                    <label for="matricula">Matrícula:</label>
+                    <input type="number" id="matricula" placeholder="Ingresa la matrícula (número)" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Ingresa el email del alumno" required>
+                    
+                    <label for="notas">Notas:</label>
+                    <p class="texto-chico">Ingresa comentarios o observaciones sobre el alumno (ej. rendimiento, intereses, etc.).</p>
+                    <textarea id="notas" rows="3" placeholder="Mínimo 10 caracteres"></textarea>
+                    
+                    <div id="errores" class="error" role="alert"></div>
+                    
                     <div class="acciones">
-                        <button type="submit" id="btnAgregarRespuesta">Agregar respuesta</button>
-                        <button type="button" id="btnLimpiarFormulario" class="btnSecundario">Limpiar</button>
+                        <button type="submit" id="btnAgregar">Agregar Alumno</button>
+                        <button type="button" id="btnLimpiarFormulario" class="btnSecundario">Limpiar Formulario</button>
+                        <button type="button" id="btnLimpiarLista" class="btnSecundario">Limpiar Lista</button>
                     </div>
                 </form>
             </section>
             <section class="panelSeparacion">
-                <h2>Lista de preguntas</h2>
-                <ul id="listaPreguntas">
-                    <!-- Lista de preguntas se renderiza aqui -->
-                </ul>
-                <p id="textoVacio" class="texto-chico">Aun no hay preguntas</p>
+                <h2>Lista de Alumnos Registrados</h2>
+                <ol id="listaElementos">
+                    <!-- Lista de alumnos se renderiza aquí -->
+                </ol>
+                <p id="textoVacio" class="texto-chico">Aún no hay alumnos registrados</p>
+            </section>
             <script src="app.js" defer></script>
     </body> 
 </html>
