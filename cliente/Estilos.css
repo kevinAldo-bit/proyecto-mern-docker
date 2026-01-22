@@ -1,92 +1,29 @@
-/* Estilos minimos para formularios */
+/* Estilos específicos - Práctica 05 */
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+h1, h2 {
+  text-align: center;
 }
 
 .panel {
-   border: 1px solid #000;
-   border-radius: 12px;
-   padding: 16px;
-}
-.panel-separacion {
-   margin-top: 16px;
-}
-textarea {
-   width: 100%;
-   margin-top: 6px;
-   padding: 10px;
-   border: 1px solid #bbb;
-   border-radius: 10px;
-   font: inherit
-}
-.acciones {
-   margin-top: 12px;
-   display: flex;
-   gap: 10px;
-   flex-wrap: wrap;
-}
-button {
-   padding: 10px 16px;
-   border: 1px solid #333;
-   border-radius: 8px;
-   background: #fff;
-   cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 14px;
+  padding: 16px;
 }
 
-button[disabled] {
-   opacity: 0.6;
-   cursor: not-allowed;
+input {
+  margin-bottom: 10px;
 }
-.boton-secundario {
-   border-color: #666
-}
+
 .error {
-   color: red;
-   font-weight: bold;
-   margin-top: 10px;
+  color: red;
+  font-weight: bold;
 }
+
 .texto-chico {
-   font-size: 0.9em;
+  font-size: 0.85em;
 }
 
-#contenedor-principal {
-   display: flex;
-   flex-direction: column;
-
-   background-color: #333;
-}
-#contenedor-secundario {
-   display: flex;
-   flex-direction: column;
-
-   background-color: #000;
-}
-#contenedor-terciario {
-   display: flex;
-   flex-direction: column;
-
-   background-color: #03009c;
-}
-.contenido {
-   display: inline-flex;
-   flex-direction: row;
-   justify-content: center;
-   flex: 1;
-   height: 20%;
-   align-items: center;
-   background-color: aquamarine;
-}
-.texto {
-   text-align: center;
-   font-size: 1.5em;
-   color: white;
-}
-.canvas {
-   display: flex;
-   flex-direction: row;
-   width: 100vw;
-   height: 100vh;
+.boton-peligro {
+  border: 1px solid red;
+  color: red;
 }

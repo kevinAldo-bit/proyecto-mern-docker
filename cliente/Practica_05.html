@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Práctica 05 - Control de Alumnos</title>
+
+  <link rel="stylesheet" href="estilos_base.css">
+  <link rel="stylesheet" href="estilos_practica_05.css">
+</head>
+<body>
+
+<main class="contenedor">
+  <h1>Control de Alumnos</h1>
+
+  <section class="panel">
+    <form id="formularioAlumno">
+      <label>
+        Nombre del alumno
+        <input id="nombreAlumno" type="text" required>
+      </label>
+
+      <label>
+        Matrícula
+        <input id="matriculaAlumno" type="text" required>
+      </label>
+
+      <label>
+        Carrera
+        <input id="carreraAlumno" type="text" required>
+      </label>
+
+      <p id="textoError" class="error"></p>
+
+      <button id="btnGuardar" disabled>Guardar</button>
+    </form>
+  </section>
+
+  <section class="panel panel-separacion">
+    <h2>Alumnos registrados</h2>
+    <p id="textoVacio">No hay alumnos registrados.</p>
+    <ul id="listaAlumnos"></ul>
+  </section>
+
+  <p id="mensaje"></p>
+</main>
+
+<script src="formulario.js"></script>
+</body>
+</html>
