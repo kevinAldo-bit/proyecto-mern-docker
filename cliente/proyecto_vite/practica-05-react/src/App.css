@@ -1,7 +1,7 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html, body, #root {
@@ -9,184 +9,61 @@ html, body, #root {
   height: 100%;
 }
 
-/* =========================
-   APP BASE
-========================= */
 .app {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   font-family: Arial, Helvetica, sans-serif;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.6s ease;
 }
 
-/* =========================
-   RAYOS (VITE STYLE)
-========================= */
-.app::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-size: 80px 80px;
-  opacity: 0.25;
-  z-index: 0;
-}
-
-/* =========================
-   ORBITAS (REACT STYLE)
-========================= */
-.app::after {
-  content: '';
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  border: 3px solid;
-  filter: blur(1px);
-  opacity: 0.35;
-  animation: spin 18s linear infinite;
-  z-index: 0;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* =========================
-   TEMA ROJO ⚡
-========================= */
-.app.red {
-  background: radial-gradient(circle at top, #3b0000, #000);
-  color: white;
-}
-
-.app.red::before {
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(255, 0, 0, 0.7),
-    rgba(255, 0, 0, 0.7) 10px,
-    transparent 10px,
-    transparent 30px
-  );
-}
-
-.app.red::after {
-  border-color: red;
-  box-shadow: 0 0 40px red;
-}
-
-/* =========================
-   TEMA MORADO 🟣
-========================= */
-.app.purple {
-  background: radial-gradient(circle at top, #1a002f, #000);
-  color: white;
-}
-
-.app.purple::before {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(180, 0, 255, 0.8),
-    rgba(180, 0, 255, 0.8) 12px,
-    transparent 12px,
-    transparent 32px
-  );
-}
-
-.app.purple::after {
-  border-color: #b300ff;
-  box-shadow: 0 0 50px #b300ff;
-}
-
-/* =========================
-   TITULO
-========================= */
-.title {
-  font-size: 2.7rem;
-  margin-bottom: 2rem;
-  z-index: 1;
-}
-
-/* =========================
-   PANEL
-========================= */
-.panel {
-  background: rgba(119, 118, 115, 0.92);
-  padding: 3rem;
-  border-radius: 26px;
-  border: 2px solid silver;
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.4);
+.card {
+  background: #111;
+  padding: 2.5rem;
+  border-radius: 20px;
+  width: 320px;
   text-align: center;
-  min-width: 440px;
-  z-index: 1;
-}
-
-/* =========================
-   LOGOS
-========================= */
-.logos {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-bottom: 2.5rem;
-}
-
-.logo {
-  width: 120px;
-  transition: transform 0.4s ease;
-}
-
-.logo:hover {
-  transform: scale(1.2) rotate(5deg);
-}
-
-.react {
-  filter: drop-shadow(0 0 18px #61dafb);
-}
-
-.vite {
-  filter: drop-shadow(0 0 18px #8f7cff);
-}
-
-/* =========================
-   BOTÓN
-========================= */
-.theme-btn {
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-  border-radius: 18px;
   border: 2px solid silver;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
   color: white;
+}
+
+.card h1 {
+  margin-bottom: 1.5rem;
+}
+
+.card input {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.card button {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 12px;
+  border: none;
+  background: #1e90ff;
+  color: white;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.app.red .theme-btn {
-  background: linear-gradient(135deg, red, darkred);
+.card button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #1e90ff;
 }
 
-.app.purple .theme-btn {
-  background: linear-gradient(135deg, #b300ff, #5a00a3);
+.logout {
+  background: crimson;
 }
 
-.theme-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px white;
+.logout:hover {
+  box-shadow: 0 0 15px crimson;
 }
-
-/* =========================
-   TEXTO
-========================= */
-.info {
-  margin-top: 1.3rem;
-  font-size: 0.95rem;
-  opacity: 0.85;
-}
-
-
-
