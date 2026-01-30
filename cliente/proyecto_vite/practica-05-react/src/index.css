@@ -1,36 +1,10 @@
 * {
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
   margin: 0;
-  height: 100vh;
-  background: radial-gradient(circle at top left, #7f00ff, #000);
-  color: white;
-  overflow: hidden;
-}
-
-/* FONDO CON FORMAS */
-body::before,
-body::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
-  filter: blur(60px);
-}
-
-body::before {
-  top: -100px;
-  left: -100px;
-}
-
-body::after {
-  bottom: -100px;
-  right: -100px;
 }
 
 .container {
@@ -42,79 +16,63 @@ body::after {
 
 /* TARJETA */
 .card {
+  background: #1e1e1e;
+  padding: 25px;
   width: 320px;
-  padding: 30px;
-  border-radius: 15px;
+  border-radius: 12px;
+  color: white;
   text-align: center;
-  animation: fadeIn 0.8s ease;
 }
 
-/* EFECTO GLASS */
-.glass {
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-}
-
-h1 {
-  margin-bottom: 5px;
-}
-
-.subtitle {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
-.user {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #b388ff;
-}
-
-.date {
-  margin-top: 15px;
-  font-size: 0.8rem;
-  opacity: 0.7;
-}
-
-input {
+/* INPUTS */
+input, select {
   width: 100%;
-  padding: 12px;
-  margin: 20px 0;
-  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
   border: none;
-  outline: none;
 }
 
+/* BOTÓN */
 button {
   width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, crimson, purple);
+  padding: 10px;
   border: none;
-  color: white;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(255, 0, 150, 0.6);
+/* ERROR */
+.error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
 }
 
-.secondary {
-  margin-top: 20px;
-  background: #444;
+/* BARRA DE PROGRESO */
+.progress {
+  margin-top: 15px;
+  width: 100%;
+  height: 10px;
+  background: #555;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.progress-bar {
+  height: 100%;
+  background: lime;
+  transition: width 0.3s;
+}
+
+/* TEMAS */
+.tema-rojo {
+  background: linear-gradient(135deg, #400, #900);
+}
+
+.tema-azul {
+  background: linear-gradient(135deg, #003, #0066ff);
+}
+
+.tema-morado {
+  background: linear-gradient(135deg, #2a003a, #7f00ff);
 }
