@@ -1,4 +1,5 @@
-import type { Task, TaskStatus } from "./types";
+import { Task, TaskStatus } from "./types";
+import TaskCard from "./TaskCard";
 
 interface Props {
   title: string;
@@ -8,39 +9,26 @@ interface Props {
 }
 
 export default function Column({ title, status, tasks, onDropTask }: Props) {
+  const handleDrop = (e: React.DragEvent) => {
+    const id = e.dataTransfer.getData("id");
+    onDropTask(id, status);
+  };
+
   return (
     <div
-      onDragOver={(e) => e.preventDefault()}
-      onDrop={(e) => {
-        const id = e.dataTransfer.getData("id");
-        onDropTask(id, status);
-      }}
-      style={{
-        border: "2px solid white",
-        padding: "10px",
-        width: "300px",
-        minHeight: "300px",
-      }}
+      className={`column ${status}`}
+      onDragOver={e => e.preventDefault()}
+      onDrop={handleDrop}
     >
       <h2>{title}</h2>
-
-      {tasks.map((task) => (
+      {tasks.map(task => (
         <div
           key={task.id}
-          draggable
-          onDragStart={(e) => e.dataTransfer.setData("id", task.id)}
-          style={{
-            background: "#1e293b",
-            padding: "10px",
-            marginBottom: "10px",
-            borderRadius: "8px",
-          }}
+          onDragStart={e => e.dataTransfer.setData("id", task.id)}
         >
-          <strong>{task.title}</strong>
-          <div>⏱️ {task.seconds}s</div>
+          <TaskCard task={task} />
         </div>
       ))}
     </div>
   );
 }
-
