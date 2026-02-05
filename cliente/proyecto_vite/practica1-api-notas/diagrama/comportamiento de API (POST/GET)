@@ -1,0 +1,22 @@
+@startuml
+title API de Notas - Diagrama General
+
+actor Usuario
+
+package "Servidor Node.js" {
+  
+  component "Express App\n(app.js)" as App
+  
+  component "Rutas API\n/api/notas" as Routes
+  
+  database "Datos de Notas\n(Array / DB)" as DB
+}
+
+Usuario --> App : HTTP Request
+App --> Routes : Redirige petición
+Routes --> DB : Obtener / Enviar datos
+DB --> Routes : Respuesta
+Routes --> App : JSON Response
+App --> Usuario : HTTP Response (JSON)
+
+@enduml
