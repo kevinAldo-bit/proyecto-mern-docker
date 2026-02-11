@@ -1,14 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const rutasTareas = require('./rutas/tareas.rutas'); // Cambiado
+const rutasTareas = require('./rutas/tareas.rutas');
+const rutasAuth = require('./rutas/auth.rutas');
 const conectarBaseDeDatos = require('./bd');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Ahora el endpoint oficial es /api/tareas
+// Rutas de autenticación
+app.use('/api/auth', rutasAuth);
+
+// Rutas de tareas (protegidas con JWT)
 app.use('/api/tareas', rutasTareas); 
 
 const PUERTO = process.env.PUERTO || 3000;

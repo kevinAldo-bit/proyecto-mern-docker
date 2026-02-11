@@ -1,9 +1,10 @@
 const express = require('express');
 const Tarea = require('../modelos/tarea');
+const { verificarToken } = require('../middleware/autenticacion');
 const router = express.Router();
 
-// Obtener todas las tareas
-router.get("/", async (req, res) => {
+// Obtener todas las tareas (requiere token)
+router.get("/", verificarToken, async (req, res) => {
     try {
         console.log(">>> Solicitud GET: Recuperando lista de tareas...");
         const tareas = await Tarea.find().sort({ createdAt: -1 });
@@ -14,8 +15,8 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Crear una tarea
-router.post("/", async (req, res) => {
+// Crear una tarea (requiere token)
+router.post("/", verificarToken, async (req, res) => {
     try {
         const { descripcion } = req.body;
         if (!descripcion || descripcion.length < 3) {

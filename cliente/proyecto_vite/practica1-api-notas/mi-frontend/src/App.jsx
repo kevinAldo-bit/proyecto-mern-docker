@@ -1,37 +1,90 @@
 import { useState, useEffect } from 'react'
+import Login from './components/Login'
+import Registro from './components/Registro'
+import TareasList from './components/TareasList'
+import './App.css'
 
 function App() {
-  const [tareas, setTareas] = useState([]);
-  const [texto, setTexto] = useState("");
+  const [usuario, setUsuario] = useState(null);
+  const [mostrarRegistro, setMostrarRegistro] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const consultar = async () => {
-    const res = await fetch('http://localhost:3000/api/tareas');
-    setTareas(await res.json());
+  useEffect(() => {
+    // Verificar si hay token guardado al cargar la página
+    const tokenGuardado = localStorage.getItem('token');
+    const usuarioGuardado = localStorage.getItem('usuario');
+    
+    if (tokenGuardado && usuarioGuardado) {
+      setToken(tokenGuardado);
+      setUsuario(JSON.parse(usuarioGuardado));
+    }
+  }, []);
+
+  const handleLoginExito = (tokenNuevo, usuarioNuevo) => {
+    localStorage.setItem('token', tokenNuevo);
+    localStorage.setItem('usuario', JSON.stringify(usuarioNuevo));
+    setToken(tokenNuevo);
+    setUsuario(usuarioNuevo);
+    setMostrarRegistro(false);
   };
 
-  const guardar = async (e) => {
-    e.preventDefault();
-    await fetch('http://localhost:3000/api/tareas', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ descripcion: texto })
-    });
-    setTexto(""); consultar();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    setToken(null);
+    setUsuario(null);
+    setMostrarRegistro(false);
   };
 
-  useEffect(() => { consultar() }, []);
+  if (!token) {
+    return (
+      <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+        <h1>Gestor de Tareas</h1>
+        {mostrarRegistro ? (
+          <>
+            <Registro onRegistroExito={handleLoginExito} />
+            <p>
+              ¿Ya tienes cuenta?{' '}
+              <button 
+                onClick={() => setMostrarRegistro(false)}
+                style={{ background: 'none', color: 'blue', cursor: 'pointer', textDecoration: 'underline', border: 'none' }}
+              >
+                Inicia sesión aquí
+              </button>
+            </p>
+          </>
+        ) : (
+          <>
+            <Login onLoginExito={handleLoginExito} />
+            <p>
+              ¿No tienes cuenta?{' '}
+              <button 
+                onClick={() => setMostrarRegistro(true)}
+                style={{ background: 'none', color: 'blue', cursor: 'pointer', textDecoration: 'underline', border: 'none' }}
+              >
+                Regístrate aquí
+              </button>
+            </p>
+          </>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h1>Gestor de Tareas de Aldo</h1>
-      <form onSubmit={guardar}>
-        <input value={texto} onChange={(e) => setTexto(e.target.value)} placeholder="Nueva tarea..." />
-        <button type="submit">Agregar</button>
-      </form>
-      <ul>
-        {tareas.map(t => <li key={t._id}>{t.descripcion}</li>)}
-      </ul>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h1>Gestor de Tareas de {usuario?.nombre}</h1>
+        <button 
+          onClick={handleLogout}
+          style={{ padding: '10px 20px', cursor: 'pointer', backgroundColor: '#f0f0f0' }}
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+      <TareasList token={token} />
     </div>
-  )
+  );
 }
-export default App
+
+export default App;
